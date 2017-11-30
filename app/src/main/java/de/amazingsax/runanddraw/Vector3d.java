@@ -2,9 +2,10 @@ package de.amazingsax.runanddraw;
 
 /**
  * Created by becker on 11/29/17.
+ * a minimal vector class
  */
 
-public class Vector3d {
+class Vector3d {
     // Members
     private float x;
     private float y;
@@ -24,8 +25,7 @@ public class Vector3d {
     }
 
     public Vector3d(
-    Vector3d v)
-    {
+            Vector3d v) {
         this.x = v.x;
         this.y = v.y;
         this.z = v.z;
@@ -80,4 +80,18 @@ public class Vector3d {
         this.z *= s;
         return this;
     }
+
+    public void copy(Vector3d v) {
+        this.x = v.x;
+        this.y = v.y;
+        this.z = v.z;
+    }
+
+    public boolean equals(Vector3d v,float delta) {
+        float squaredModulus=(this.x-v.x)*(this.x-v.x);
+        squaredModulus+=(this.y-v.y)*(this.y-v.y);
+        squaredModulus+=(this.z-v.z)*(this.z-v.z);
+        return squaredModulus < delta*delta;
+    }
+
 }
