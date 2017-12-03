@@ -1,11 +1,13 @@
 package de.amazingsax.runanddraw;
 
+import static java.lang.Math.pow;
+
 /**
  * Created by becker on 11/29/17.
  * a minimal vector class
  */
 
-class Vector3d {
+class Vector3d implements Cloneable{
     // Members
     private float x;
     private float y;
@@ -85,6 +87,18 @@ class Vector3d {
         this.x = v.x;
         this.y = v.y;
         this.z = v.z;
+    }
+
+    public Object clone() {
+        Vector3d v = new Vector3d();
+        v.copy(this);
+        return v;
+    }
+
+    public void round(int n) {
+        x=(float)Math.round(x*pow(10,n)/(float)pow(10,n));
+        y=(float)Math.round(y*pow(10,n)/(float)pow(10,n));
+        z=(float)Math.round(z*pow(10,n)/(float)pow(10,n));
     }
 
     public boolean equals(Vector3d v,float delta) {
